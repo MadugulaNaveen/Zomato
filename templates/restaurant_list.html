@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant List</title>
+</head>
+<body>
+    <h1>Restaurant List</h1>
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>
+                <a href="{% url 'restaurant-detail' restaurant.id %}">
+                    {{ restaurant.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        {% if pagination.previous %}
+            <a href="?page={{ pagination.current_page|add:"-1" }}">Previous</a>
+        {% endif %}
+        
+        <span>{{ pagination.current_page }} of {{ pagination.total_pages }}</span>
+        
+        {% if pagination.next %}
+            <a href="?page={{ pagination.current_page|add:"1" }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>

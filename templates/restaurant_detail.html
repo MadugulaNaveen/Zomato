@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ restaurant.name }}</title>
+</head>
+<body>
+    <h1>{{ restaurant.name }}</h1>
+    <p>Address: {{ restaurant.address }}</p>
+    <p>Country: {{ restaurant.country }}</p>
+    <p>Average Spend: {{ restaurant.cost_for_two }}</p>
+    <p>Cuisines: {{ restaurant.cuisine }}</p>
+    <p>Rating: {{ restaurant.rating }}</p>
+    <p>No Of Ratings: {{restaurant.number_of_ratings}}</p>
+    <a href="{% url 'restaurant-list' %}">Back to Restaurant List</a>
+</body>
+</html>
