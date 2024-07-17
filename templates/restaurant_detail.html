@@ -1,16 +1,40 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{{ restaurant.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/details.css' %}">
 </head>
 <body>
-    <h1>{{ restaurant.name }}</h1>
-    <p>Address: {{ restaurant.address }}</p>
-    <p>Country: {{ restaurant.country }}</p>
-    <p>Average Spend: {{ restaurant.cost_for_two }}</p>
-    <p>Cuisines: {{ restaurant.cuisine }}</p>
-    <p>Rating: {{ restaurant.rating }}</p>
-    <p>No Of Ratings: {{restaurant.number_of_ratings}}</p>
-    <a href="{% url 'restaurant-list' %}">Back to Restaurant List</a>
+    <div class="container">
+        <h1>{{ restaurant.name }}</h1>
+        <table>
+            <tr>
+                <th>Address</th>
+                <td>{{ restaurant.address }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ restaurant.country }}</td>
+            </tr>
+            <tr>
+                <th>Average Spend</th>
+                <td>{{ restaurant.cost_for_two }}</td>
+            </tr>
+            <tr>
+                <th>Cuisines</th>
+                <td>{{ restaurant.cuisine }}</td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td>{{ restaurant.rating }}</td>
+            </tr>
+            <tr>
+                <th>No Of Ratings</th>
+                <td>{{ restaurant.number_of_ratings }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'restaurant-list' %}">Back to Restaurant List</a>
+    </div>
 </body>
 </html>
