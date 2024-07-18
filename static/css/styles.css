@@ -1,9 +1,14 @@
 /* General Styles */
-body {
-  font-family: Arial, sans-serif;
+*{
   margin: 0;
   padding: 0;
-  background-color: beige;
+  box-sizing: border-box;
+}
+body {
+  font-family: Metropolis;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(247, 247, 237);
 }
 
 .container {
@@ -15,27 +20,79 @@ body {
 
 h1 {
   text-align: center;
-  margin: 20px 0;
-  color: #333;
+  color: #ff0013;
+  margin-top: -2px;
+  padding: 20px;
+  width: fit-content;
+  text-shadow: 1px 1px black;
+  font-size: 3em;
+  opacity: 1;
 }
 
 /* Filter Form Styles */
+/* Form Styles */
 form {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
-form label,
-form select,
-form input,
-form button {
-  margin: 0 5px;
+/* Select Box Style */
+form select {
   padding: 10px;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex: 1 1 200px; /* Adjust width as needed */
 }
+
+/* Text Input Style */
+form input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex: 1 1 200px; /* Adjust width as needed */
+}
+
+/* Button Style */
+form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f1616d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #fe0015;
+}
+
+/* Label Style */
+form label {
+  font-size: 16px;
+  margin-right: 5px;
+  height: fit-content;
+  align-self: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+  
+  form select,
+  form input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
 
 /* Restaurant List Styles */
 .restaurant-list {
@@ -52,19 +109,32 @@ form button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: relative;
   text-align: center;
-  width: 300px;
+  width: 100%;
+  height: 320px;
+  box-sizing: border-box;
 }
 
 .restaurant-item img {
   width: 100%;
-  max-height: 200px;
+  height: 220px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+.restaurantName{
+  font-size: 20px;
+  font-weight: bold;
+  color: #E23744;
+  text-align: left;
+  width: 90%;
 }
 
 .restaurant-item h3 {
   margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Pagination Styles */
@@ -86,8 +156,42 @@ form button {
   font-size: 16px;
 }
 
-.rating{
-  bottom: 0;
+.rating {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: red;
+}
+
+.starRating {
+  background-color: green;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+.cuisine {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.cover-image{
+  width: 100%;
+  height: 20vh;
+  background-image: url("https://techcrunch.com/wp-content/uploads/2015/08/shutterstock_237882754.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.7;
+  display: grid;
+  place-content: center;
 }

@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant List</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1>Restaurant List</h1>
-
-    <!-- Filter Form -->
+    <div class="cover-image">
+        <h1>Zomato Restaurants</h1>
+    </div>
     <div class="container">
         <form method="get" action=".">
             <select id="country" name="country">
@@ -20,11 +21,11 @@
                 {% endfor %}
             </select>
 
-            <label for="cost_for_two">Cost For Two</label>
+            <label for="cost_for_two">Cost For Two:</label>
             <input type="text" id="cost_for_two" name="cost_for_two" value="{{ cost_for_two }}">
             
             <label for="search">Search:</label>
-            <input type="text" id="search" name="search" value="{{ search }}">
+            <input type="text" id="search" name="search" value="{{ search }}" placeholder="Name or Cuisine">
             <button type="submit">Apply Filter</button>
         </form>
 
@@ -33,13 +34,21 @@
             {% for restaurant in restaurants %}
             <li>
                 <div class="restaurant-item">
-                    <img src="{% static 'images/placeholder.jpg' %}" alt="Restaurant Image">
-                    <a href="{% url 'restaurant-detail' restaurant.id %}">
-                        <h3>{{ restaurant.name }}</h3>
-                    </a>
+                    <img src="{{ restaurant.image_url }}" alt="Restaurant Image">
+                    <div class="restaurant-info rating">
+                        <a class='restaurantName' href="{% url 'restaurant-detail' restaurant.id %}">
+                            <h3>{{ restaurant.name }}</h3>
+                        </a>
+                    </div>
+
                     <div class="rating">
-                        <p>Rating: {{ restaurant.rating }}</p>
-                        <p>No Of Ratings: {{ restaurant.number_of_ratings }}</p>
+                        <div class="cuisine">
+                        <span>{{ restaurant.cuisine }} </span>
+                        </div>
+                        <div class="starRating">
+                            <span>{{ restaurant.rating }} <span class="fa fa-star checked"></span> </span>
+                        </div>
+
                     </div>
                 </div>
             </li>

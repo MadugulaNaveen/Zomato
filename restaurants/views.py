@@ -23,5 +23,5 @@ class RestaurantList(generics.ListAPIView):
     pagination_class = RestaurantPagination
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     filterset_fields = ['country_code','cost_for_two']
-    search_fields = ['name']
+    search_fields = ['name','cuisine']
     
