@@ -21,7 +21,8 @@ def restaurant_list(request):
     }
 
     try:
-        response = requests.get('settings.API_BASE_URL', params=params)
+        api_url = f"{settings.API_BASE_URL}"
+        response = requests.get(api_url, params=params)
         response.raise_for_status()
         data = response.json()
         restaurants = data['results']
