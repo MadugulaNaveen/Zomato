@@ -13,6 +13,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the API base URL from environment variables
+API_BASE_URL = os.getenv('API_BASE_URL')
+
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

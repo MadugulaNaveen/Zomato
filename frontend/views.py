@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 from .countries import data_dict
+from django.conf import settings
 import random
 
 def restaurant_list(request):
@@ -20,7 +21,7 @@ def restaurant_list(request):
     }
 
     try:
-        response = requests.get('http://127.0.0.1:8000/api/restaurants/', params=params)
+        response = requests.get('settings.API_BASE_URL', params=params)
         response.raise_for_status()
         data = response.json()
         restaurants = data['results']
@@ -45,17 +46,20 @@ def restaurant_list(request):
         'countries':countries,
         'selected_country':country,
     })
+    
 
 def restaurant_detail(request,id):
-  response = requests.get(f'http://127.0.0.1:8000/api/restaurants/{id}/')
-  restaurant = response.json()
-  reverse_country_mapping = {v: k for k, v in data_dict.items()}
-  restaurant['country'] = reverse_country_mapping.get(restaurant['country_code'])
-  return render(request,'restaurant_detail.html',{'restaurant':restaurant})
+    api_url = f"{settings.API_BASE_URL}{id}/"
+    response = requests.get(api_url)
+    restaurant = response.json()
+    reverse_country_mapping = {v: k for k, v in data_dict.items()}
+    restaurant['country'] = reverse_country_mapping.get(restaurant['country_code'])
+    return render(request,'restaurant_detail.html',{'restaurant':restaurant})
 
 def random_restaurant(request):
     n = random.randint(1,9000)
-    response = requests.get(f'http://127.0.0.1:8000/api/restaurants/{n}/')
+    api_url = f"{settings.API_BASE_URL}{n}/"
+    response = requests.get(api_url)
     restaurant = response.json()
     reverse_country_mapping = {v: k for k, v in data_dict.items()}
     restaurant['country'] = reverse_country_mapping.get(restaurant['country_code'])
