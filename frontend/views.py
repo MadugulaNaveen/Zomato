@@ -4,6 +4,8 @@ from .countries import data_dict
 from django.conf import settings
 import random
 
+
+API_BASE_URL = "https://zomato-project-6xiu.onrender.com/api/restaurants/"
 def restaurant_list(request):
     page = request.GET.get('page', 1)
     country = request.GET.get('country', '')
@@ -21,7 +23,7 @@ def restaurant_list(request):
     }
 
     try:
-        api_url = f"{settings.API_BASE_URL}"
+        api_url = f"{API_BASE_URL}"
         response = requests.get(api_url, params=params)
         response.raise_for_status()
         data = response.json()
@@ -50,7 +52,7 @@ def restaurant_list(request):
     
 
 def restaurant_detail(request,id):
-    api_url = f"{settings.API_BASE_URL}{id}/"
+    api_url = f"{API_BASE_URL}{id}/"
     response = requests.get(api_url)
     restaurant = response.json()
     reverse_country_mapping = {v: k for k, v in data_dict.items()}
@@ -59,7 +61,7 @@ def restaurant_detail(request,id):
 
 def random_restaurant(request):
     n = random.randint(1,9000)
-    api_url = f"{settings.API_BASE_URL}{n}/"
+    api_url = f"{API_BASE_URL}{n}/"
     response = requests.get(api_url)
     restaurant = response.json()
     reverse_country_mapping = {v: k for k, v in data_dict.items()}
