@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 from .countries import data_dict
+import random
 
 def restaurant_list(request):
     page = request.GET.get('page', 1)
@@ -52,3 +53,10 @@ def restaurant_detail(request,id):
   restaurant['country'] = reverse_country_mapping.get(restaurant['country_code'])
   return render(request,'restaurant_detail.html',{'restaurant':restaurant})
 
+def random_restaurant(request):
+    n = random.randint(1,9000)
+    response = requests.get(f'http://127.0.0.1:8000/api/restaurants/{n}/')
+    restaurant = response.json()
+    reverse_country_mapping = {v: k for k, v in data_dict.items()}
+    restaurant['country'] = reverse_country_mapping.get(restaurant['country_code'])
+    return render(request,'restaurant_detail.html',{'restaurant':restaurant})

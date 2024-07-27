@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = 'Load data from zomato.csv into the Restaurant model'
 
     def handle(self, *args, **options):
-        file_path = '/Users/naveenm/Coding/placementDrives/task-MadugulaNaveen 2/updated_csv_file.csv'
+        file_path = '/Users/naveenm/Coding/placementDrives/task-MadugulaNaveen/zomato.csv'
 
         with open(file_path, newline='', encoding='ISO-8859-1') as csvfile:
             reader = csv.DictReader(csvfile)
@@ -25,13 +25,3 @@ class Command(BaseCommand):
                     image_url=row['image_url']
                 )
         self.stdout.write(self.style.SUCCESS('Data loaded successfully'))
-
-    def fetch_image(self, api_url):
-        try:
-            response = requests.get(api_url)
-            response.raise_for_status()
-            image_data = response.json()
-            return image_data.get('image', '')
-        except requests.exceptions.RequestException as e:
-            self.stdout.write(self.style.ERROR(f'Failed to fetch image: {e}'))
-            return ''
