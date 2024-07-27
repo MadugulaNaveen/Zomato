@@ -84,7 +84,8 @@ WSGI_APPLICATION = "zomato_project.wsgi.application"
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://zomatodb_efux_user:hxOBYjEqU4UxtxsDCddlhFKqIGHSFkm4@dpg-cqe89vggph6c73ajkesg-a.oregon-postgres.render.com/zomatodb_efux',
+        # get from DATABASE_URL env variable.
+        default = os.getenv('DATABASE_URL'),
         conn_max_age=600
     )
 }
