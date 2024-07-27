@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-inn*^7*x9)ut%!4oe&ci=9$_)sp=wieubs%$q=r#xz$(cs@!7_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Zomato-project-6xiu.onrender.com','*']
 
 
 # Application definition
